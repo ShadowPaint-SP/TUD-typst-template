@@ -41,6 +41,7 @@ Your text.
 ## Notes
 
 - The template uses translations only for fixed labels such as contents, references, supervisors, and keywords.
+- for more information on how to use Typst look at the officail [documentation](https://typst.app/docs/) or watch this [video](https://www.youtube.com/watch?v=BB1zhr-QWjQ&t=27s) 
 - University, faculty, thesis type, institute, and chair are normal metadata fields.
 - The title page supports multiple authors.
 - `logo` is optional. Put an SVG/PDF/PNG in `assets/` and set `logo: "assets/tud-logo-blue.svg"`.
