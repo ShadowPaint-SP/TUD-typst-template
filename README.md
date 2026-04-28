@@ -6,10 +6,9 @@ It is designed for students at TU Dresden by default, but university, faculty, i
 ## Files
 
 - `template.typ` – reusable template function
-- `main.typ` – example thesis
-- `references.bib` – example BibTeX bibliography
+- `example.typ` – example starting point
+- `example-ref.bib` – example BibTeX bibliography
 - `assets/` – optional logo folder
-- `chapters/` – suggested folder for larger projects
 
 ## Compile
 

@@ -1,6 +1,6 @@
-#import "template.typ": tud-cs-thesis
+#import "template.typ": tud-thesis
 
-#show: tud-cs-thesis.with(
+#show: tud-thesis.with(
   lang: "de",
   university: "Technische Universität Dresden",
   faculty: "Fakultät Informatik",
@@ -38,8 +38,7 @@
     Ich erkläre, dass ich die vorliegende Arbeit selbstständig und nur unter
     Verwendung der angegebenen Quellen und Hilfsmittel angefertigt habe.
   ],
-  bibliography-file: "references.bib",
-  bibliography-style: "ieee",
+  bibliography-file: "example-ref.bib",
   appendix: [
     = Zusätzliche Materialien
 

@@ -1,4 +1,4 @@
-// TU Dresden / Computer Science thesis template for Typst
+// TU Dresden thesis template for Typst
 // Targeted at Typst 0.14.x, but intentionally avoids uncommon packages.
 // Author-facing metadata is configurable; translations are only used for fixed labels.
 
@@ -209,7 +209,7 @@
   }
 }
 
-#let tud-cs-thesis(
+#let tud-thesis(
   lang: "de",
   // User-defined metadata. These are intentionally not translated.
   university: "Technische Universität Dresden",
@@ -241,7 +241,7 @@
   show-figures: true,
   show-tables: true,
   bibliography-file: none,
-  bibliography-style: "association-for-computational-linguistics",
+  bibliography-style: "ieee",
   body,
 ) = {
   let doc-authors = authors.map(a => if type(a) == dictionary { a.at("name", default: "") } else { a }).join(", ")
