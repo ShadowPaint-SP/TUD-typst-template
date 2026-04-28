@@ -6,9 +6,11 @@ It is designed for students at TU Dresden by default, but university, faculty, i
 ## Files
 
 - `template.typ` – reusable template function
+- `lang.typ` - language translations for template labels 
 - `example.typ` – example starting point
 - `example-ref.bib` – example BibTeX bibliography
 - `assets/` – optional logo folder
+- `chapters/` - recommended to add and use for better organisation
 
 ## Compile
 
@@ -19,9 +21,9 @@ typst compile main.typ
 ## Minimal usage
 
 ```typst
-#import "template.typ": tud-cs-thesis
+#import "template.typ": tud-thesis
 
-#show: tud-cs-thesis.with(
+#show: tud-thesis.with(
   lang: "en",
   university: "Technische Universität Dresden",
   faculty: "Faculty of Computer Science",

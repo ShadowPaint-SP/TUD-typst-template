@@ -1,39 +1,7 @@
 // TU Dresden thesis template for Typst
 // Targeted at Typst 0.14.x, but intentionally avoids uncommon packages.
 // Author-facing metadata is configurable; translations are only used for fixed labels.
-
-#let labels = (
-  de: (
-    abstract: "Zusammenfassung",
-    abstract_en: "Abstract",
-    acknowledgements: "Danksagung",
-    appendix: "Anhang",
-    bibliography: "Literaturverzeichnis",
-    contents: "Inhaltsverzeichnis",
-    declaration: "Selbstständigkeitserklärung",
-    examiners: "Prüfende",
-    keywords: "Schlagwörter",
-    list_of_figures: "Abbildungsverzeichnis",
-    list_of_tables: "Tabellenverzeichnis",
-    matriculation_number: "Matrikelnummer",
-    supervisors: "Betreuung",
-  ),
-  en: (
-    abstract: "Abstract",
-    abstract_en: "Abstract",
-    acknowledgements: "Acknowledgements",
-    appendix: "Appendix",
-    bibliography: "References",
-    contents: "Contents",
-    declaration: "Declaration of Authorship",
-    examiners: "Examiners",
-    keywords: "Keywords",
-    list_of_figures: "List of Figures",
-    list_of_tables: "List of Tables",
-    matriculation_number: "Student ID",
-    supervisors: "Supervisors",
-  ),
-)
+#import "lang.typ": labels
 
 #let _label(lang, key) = labels.at(lang).at(key)
 
@@ -44,6 +12,12 @@
     pagebreak()
   }
 }
+
+#let _format-date(lang) = [
+  #datetime.today().day().
+  #_label(lang, "months").at(datetime.today().month() - 1)
+  #datetime.today().year()
+]
 
 #let _person-line(person, role: none) = {
   if type(person) == dictionary {
@@ -122,7 +96,6 @@
   authors,
   supervisors,
   examiners,
-  date,
   logo,
 ) = {
   set page(header: none, footer: none)
@@ -167,10 +140,6 @@
       #v(1mm)
       #_person-grid(examiners, lang, kind: "person")
     ]
-
-    #v(1fr)
-
-    #date
   ]
 
   pagebreak()
@@ -178,6 +147,9 @@
 
 #let _frontmatter(
   lang,
+  date,
+  location,
+  authors,
   abstract,
   abstract-en,
   acknowledgements,
@@ -193,7 +165,19 @@
 
 
   _maybe-block(_label(lang, "acknowledgements"), acknowledgements)
-  _maybe-block(_label(lang, "declaration"), declaration)
+  _maybe-block(
+    _label(lang, "declaration"),
+    {
+      declaration
+      v(2cm)
+      line(length: 6cm, stroke: 0.5pt)
+      for author in authors {
+        author.name
+        linebreak()
+        [#location, #if date != none { date } else { _format-date(lang) }]
+      }
+    },
+  )
 
   outline(title: _label(lang, "contents"), target: heading.where(numbering: "1.1.1"), depth: 3)
   pagebreak()
@@ -222,7 +206,8 @@
   authors: (),
   supervisors: (),
   examiners: (),
-  date: "",
+  date: none,
+  location: "Dresden",
   logo: none,
   // Layout.
   paper: "a4",
@@ -269,7 +254,6 @@
     authors,
     supervisors,
     examiners,
-    date,
     logo,
   )
   set page(paper: paper, margin: margin, columns: columns)
@@ -279,6 +263,9 @@
 
   _frontmatter(
     lang,
+    date,
+    location,
+    authors,
     abstract,
     abstract-en,
     acknowledgements,
