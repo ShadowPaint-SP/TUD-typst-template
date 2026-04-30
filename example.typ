@@ -1,4 +1,4 @@
-#import "template.typ": tud-thesis
+#import "template.typ": *
 
 #show: tud-thesis.with(
   lang: "de",
@@ -28,16 +28,19 @@
   ),
   abstract: [
     Diese Arbeit untersucht beispielhaft, wie ein Abschlussarbeits-Template in Typst
-    für die Informatik an der TU Dresden strukturiert werden kann.
+    für die Informatik an der #acr("TU") Dresden strukturiert werden kann.
   ],
   abstract-en: [
     This thesis illustrates how a Typst thesis template for computer science at
-    TU Dresden can be structured.
+    #acr("TU") Dresden can be structured.
   ],
   declaration: [
     Ich erkläre, dass ich die vorliegende Arbeit selbstständig und nur unter
     Verwendung der angegebenen Quellen und Hilfsmittel angefertigt habe.
   ],
+  acronyms: (
+    "TU": "Technische Universität",
+  ),
   bibliography-file: "example-ref.bib",
   appendix: [
     = Zusätzliche Materialien
@@ -52,6 +55,7 @@ Dies ist ein Beispiel für den Haupttext der Arbeit. Das Template verwendet
 standardmäßig eine Textspalte, kann aber über `columns: 2` auch zweispaltig verwendet werden.
 
 Typst unterstützt Literaturverweise direkt, zum Beispiel @vaswani2017attention.
+
 
 == Motivation
 

@@ -2,6 +2,7 @@
 // Targeted at Typst 0.14.x, but intentionally avoids uncommon packages.
 // Author-facing metadata is configurable; translations are only used for fixed labels.
 #import "lang.typ": labels
+#import "@preview/acrostiche:0.7.0": *
 
 #let _label(lang, key) = labels.at(lang).at(key)
 
@@ -156,6 +157,7 @@
   declaration,
   show-figures,
   show-tables,
+  acronyms,
 ) = {
   set page(numbering: "I", footer: context align(center)[#counter(page).display()])
   counter(page).update(1)
@@ -180,7 +182,6 @@
   )
 
   outline(title: _label(lang, "contents"), target: heading.where(numbering: "1.1.1"), depth: 3)
-  pagebreak()
 
   if show-figures {
     outline(title: _label(lang, "list_of_figures"), target: figure.where(kind: image))
@@ -189,6 +190,11 @@
 
   if show-tables {
     outline(title: _label(lang, "list_of_tables"), target: figure.where(kind: table))
+    pagebreak()
+  }
+
+  if acronyms.len() > 0 {
+    print-index(row-gutter: 5pt, used-only: true, title: _label(lang, "list_of_acronyms"))
     pagebreak()
   }
 }
@@ -225,6 +231,7 @@
   // Generated lists and bibliography.
   show-figures: true,
   show-tables: true,
+  acronyms: (),
   bibliography-file: none,
   bibliography-style: "ieee",
   body,
@@ -261,6 +268,8 @@
   set figure(numbering: "1")
   set table(inset: 5pt)
 
+  init-acronyms(acronyms)
+
   _frontmatter(
     lang,
     date,
@@ -272,6 +281,7 @@
     declaration,
     show-figures,
     show-tables,
+    acronyms,
   )
 
   counter(page).update(1)

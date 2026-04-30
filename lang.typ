@@ -11,8 +11,9 @@
     keywords: "Schlagwörter",
     list_of_figures: "Abbildungsverzeichnis",
     list_of_tables: "Tabellenverzeichnis",
+    list_of_acronyms: "Abkürzungsverzeichnis",
     matriculation_number: "Matrikelnummer",
-    supervisors: "Betreuung",
+    supervisors: "Betreuer",
     months: (
       "Januar",
       "Februar",
@@ -40,6 +41,7 @@
     keywords: "Keywords",
     list_of_figures: "List of Figures",
     list_of_tables: "List of Tables",
+    list_of_acronyms: "List of Acronyms",
     matriculation_number: "Student ID",
     supervisors: "Supervisors",
     months: (
