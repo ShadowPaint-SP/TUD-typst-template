@@ -30,7 +30,7 @@ typst compile main.typ
   title: "My Thesis",
   authors: ((name: "Ada Lovelace", student-id: "1234567"),),
   supervisors: ((name: "Dr. Example"),),
-  bibliography-file: "references.bib",
+  bibliography-file: "example-ref.bib",
 )
 
 = Introduction
