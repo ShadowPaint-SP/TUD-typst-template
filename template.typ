@@ -115,9 +115,14 @@
 
     #v(32mm)
 
-    #text(size: 14pt)[#thesis-type]
+    #align(horizon)[
+      #text(size: 14pt)[#thesis-type]
 
-    #text(size: 22pt, weight: "bold")[#title]
+      #par(justify: false)[
+        #text(size: 22pt, weight: "bold")[#title]
+      ]
+    ]
+
 
     #if subtitle != none [
       #text(size: 12pt)[#subtitle]
@@ -164,7 +169,6 @@
 
   _maybe-block(_label(lang, "abstract"), abstract)
   _maybe-block(_label(lang, "abstract_en"), abstract-en)
-
 
   _maybe-block(_label(lang, "acknowledgements"), acknowledgements)
   _maybe-block(
