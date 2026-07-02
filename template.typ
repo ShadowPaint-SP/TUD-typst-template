@@ -284,6 +284,31 @@
   set heading(numbering: "1.1.1")
   set figure(numbering: "1")
   show figure.caption: set text(size: font-size - 2pt, style: "italic")
+
+  // Code Styling
+  show raw: set text(font: "JetBrains Mono NL", size: font-size - 4pt)
+  show raw.where(block: true): it => {
+    block(
+      fill: rgb("#eee"),
+      inset: 6pt,
+      radius: 4pt,
+    )[#stack(
+      dir: ttb,
+      spacing: 3pt,
+      ..it
+        .lines
+        .map(line => table(
+          stroke: none,
+          inset: 0pt,
+          columns: (1.8em, 1fr),
+          column-gutter: 0.7em,
+          align: (right, left),
+          text(fill: luma(58.82%), raw(str(line.number))), line,
+        ))
+        .flatten(),
+    )]
+  }
+
   set table(inset: 5pt)
 
   init-acronyms(acronyms)
