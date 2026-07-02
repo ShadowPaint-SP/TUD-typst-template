@@ -14,6 +14,13 @@
   }
 }
 
+#let _outline-if-any(title, target) = context {
+  if query(target).len() > 0 {
+    outline(title: title, target: target)
+    pagebreak()
+  }
+}
+
 #let _format-date(lang) = [
   #datetime.today().day().
   #_label(lang, "months").at(datetime.today().month() - 1)
@@ -162,6 +169,7 @@
   declaration,
   show-figures,
   show-tables,
+  show-acronyms,
   acronyms,
 ) = {
   set page(numbering: "I", footer: context align(center)[#counter(page).display()])
@@ -188,18 +196,22 @@
   outline(title: _label(lang, "contents"), target: heading.where(numbering: "1.1.1"), depth: 3)
 
   if show-figures {
-    outline(title: _label(lang, "list_of_figures"), target: figure.where(kind: image))
-    pagebreak()
+    _outline-if-any(_label(lang, "list_of_figures"), figure.where(kind: image))
   }
 
   if show-tables {
-    outline(title: _label(lang, "list_of_tables"), target: figure.where(kind: table))
-    pagebreak()
+    _outline-if-any(_label(lang, "list_of_tables"), figure.where(kind: table))
   }
 
-  if acronyms.len() > 0 {
-    print-index(row-gutter: 5pt, used-only: true, title: _label(lang, "list_of_acronyms"))
-    pagebreak()
+  if show-acronyms {
+    context {
+      let used-acronyms = _acronyms.final().pairs().filter(((_, state)) => state.at(2))
+
+      if used-acronyms.len() > 0 {
+        print-index(row-gutter: 5pt, used-only: true, title: _label(lang, "list_of_acronyms"))
+        pagebreak()
+      }
+    }
   }
 }
 
@@ -235,6 +247,7 @@
   // Generated lists and bibliography.
   show-figures: true,
   show-tables: true,
+  show-acronyms: true,
   acronyms: (),
   bibliography-file: none,
   bibliography-style: "ieee",
@@ -285,6 +298,7 @@
     declaration,
     show-figures,
     show-tables,
+    show-acronyms,
     acronyms,
   )
 
