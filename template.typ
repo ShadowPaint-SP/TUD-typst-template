@@ -283,6 +283,7 @@
   set page(paper: paper, margin: margin, columns: columns)
   set heading(numbering: "1.1.1")
   set figure(numbering: "1")
+  show figure.caption: set text(size: font-size - 2pt, style: "italic")
   set table(inset: 5pt)
 
   init-acronyms(acronyms)
