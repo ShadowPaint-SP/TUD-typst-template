@@ -297,11 +297,9 @@
       spacing: 3pt,
       ..it
         .lines
-        .map(line => table(
-          stroke: none,
-          inset: 0pt,
-          columns: (1.8em, 1fr),
-          column-gutter: 0.7em,
+        .map(line => grid(
+          columns: (1.2em, 1fr),
+          gutter: 0.7em,
           align: (right, left),
           text(fill: luma(58.82%), raw(str(line.number))), line,
         ))
@@ -309,7 +307,50 @@
     )]
   }
 
-  set table(inset: 5pt)
+  // ACL inspired Tables
+  set table(
+    align: left,
+    inset: (x: 5pt, y: 4.5pt),
+    stroke: none,
+  )
+  show table: it => {
+    let fields = it.fields()
+    let column-count = fields.columns.len()
+    let cells = fields.children.map(cell => cell.fields().body)
+    let header-cells = cells.slice(0, column-count)
+    let body-cells = cells.slice(column-count)
+
+    stack(
+      dir: ttb,
+      spacing: 0pt,
+      line(length: 100%, stroke: 0.8pt + black),
+      v(3pt),
+      grid(
+        columns: fields.columns,
+        column-gutter: fields.column-gutter,
+        inset: (x: 5pt, y: 1.5pt),
+        align: fields.align,
+        fill: fields.fill,
+        stroke: none,
+        ..header-cells,
+      ),
+      v(3pt),
+      line(length: 100%, stroke: 0.5pt + black),
+      v(3pt),
+      grid(
+        columns: fields.columns,
+        column-gutter: fields.column-gutter,
+        row-gutter: fields.row-gutter,
+        inset: fields.inset,
+        align: fields.align,
+        fill: fields.fill,
+        stroke: none,
+        ..body-cells,
+      ),
+      v(3pt),
+      line(length: 100%, stroke: 0.8pt + black),
+    )
+  }
 
   init-acronyms(acronyms)
 
