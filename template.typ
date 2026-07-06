@@ -208,7 +208,7 @@
       let used-acronyms = _acronyms.final().pairs().filter(((_, state)) => state.at(2))
 
       if used-acronyms.len() > 0 {
-        print-index(row-gutter: 5pt, used-only: true, title: _label(lang, "list_of_acronyms"))
+        print-index(row-gutter: 7pt, used-only: true, title: _label(lang, "list_of_acronyms"), sorted: "up")
         pagebreak()
       }
     }
@@ -233,7 +233,7 @@
   logo: none,
   // Layout.
   paper: "a4",
-  margin: (left: 35mm, right: 25mm, top: 25mm, bottom: 25mm),
+  margin: (left: 30mm, right: 30mm, top: 25mm, bottom: 25mm),
   columns: 1,
   font: "New Computer Modern",
   font-size: 11pt,
@@ -256,7 +256,7 @@
   let doc-authors = authors.map(a => if type(a) == dictionary { a.at("name", default: "") } else { a }).join(", ")
 
   set document(title: title, author: doc-authors)
-  set text(lang: lang, font: font, size: font-size)
+  set text(lang: lang, font: font, size: font-size, hyphenate: false)
   set par(justify: true, leading: line-leading)
 
   show heading.where(level: 1): it => {
@@ -264,6 +264,18 @@
     v(1.2em)
     text(size: 18pt, weight: "bold")[#it.body]
     v(0.7em)
+  }
+
+  show heading.where(level: 2): it => {
+    v(0.4em)
+    text(size: 13pt, weight: "bold")[
+      #if it.numbering != none [
+        #counter(heading).display(it.numbering)
+        #h(0.2em)
+      ]
+      #it.body
+    ]
+    v(0.1em)
   }
 
   _title-page(
@@ -323,6 +335,7 @@
     stack(
       dir: ttb,
       spacing: 0pt,
+      v(5pt),
       line(length: 100%, stroke: 0.8pt + black),
       v(3pt),
       grid(
@@ -349,6 +362,7 @@
       ),
       v(3pt),
       line(length: 100%, stroke: 0.8pt + black),
+      v(5pt),
     )
   }
 
