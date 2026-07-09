@@ -342,7 +342,7 @@
         columns: fields.columns,
         column-gutter: fields.column-gutter,
         inset: (x: 5pt, y: 1.5pt),
-        align: fields.align,
+        align: center,
         fill: fields.fill,
         stroke: none,
         ..header-cells,
