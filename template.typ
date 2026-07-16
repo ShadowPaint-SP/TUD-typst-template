@@ -262,19 +262,15 @@
   show heading.where(level: 1): it => {
     pagebreak(weak: true)
     v(1.2em)
-    text(size: 18pt, weight: "bold")[#it.body]
+    text(size: 18pt)[#it]
+    h(0.2em)
     v(0.7em)
   }
 
   show heading.where(level: 2): it => {
     v(0.4em)
-    text(size: 13pt, weight: "bold")[
-      #if it.numbering != none [
-        #counter(heading).display(it.numbering)
-        #h(0.2em)
-      ]
-      #it.body
-    ]
+    text(size: 13pt)[#it]
+    h(0.2em)
     v(0.1em)
   }
 
