@@ -72,9 +72,12 @@ Zusammenfassungen, Schlagwörter, Verzeichnisse, Hauptteil, Anhang und Literatur
 #figure(
   table(
     columns: 2,
-    [Eigenschaft], [Wert],
+    table.hline(),
+    table.header([Eigenschaft], [Wert]),
+    table.hline(),
     [Sprache], [Deutsch und Englisch],
     [Spalten], [Konfigurierbar],
+    table.hline(),
   ),
   caption: [Beispieltabelle.],
 )

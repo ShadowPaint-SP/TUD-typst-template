@@ -317,50 +317,9 @@
 
   // ACL inspired Tables
   set table(
-    align: left,
-    inset: (x: 5pt, y: 4.5pt),
+    align: center,
     stroke: none,
   )
-  show table: it => {
-    let fields = it.fields()
-    let column-count = fields.columns.len()
-    let cells = fields.children.map(cell => cell.fields().body)
-    let header-cells = cells.slice(0, column-count)
-    let body-cells = cells.slice(column-count)
-
-    stack(
-      dir: ttb,
-      spacing: 0pt,
-      v(5pt),
-      line(length: 100%, stroke: 0.8pt + black),
-      v(3pt),
-      grid(
-        columns: fields.columns,
-        column-gutter: fields.column-gutter,
-        inset: (x: 5pt, y: 1.5pt),
-        align: center,
-        fill: fields.fill,
-        stroke: none,
-        ..header-cells,
-      ),
-      v(3pt),
-      line(length: 100%, stroke: 0.5pt + black),
-      v(3pt),
-      grid(
-        columns: fields.columns,
-        column-gutter: fields.column-gutter,
-        row-gutter: fields.row-gutter,
-        inset: fields.inset,
-        align: fields.align,
-        fill: fields.fill,
-        stroke: none,
-        ..body-cells,
-      ),
-      v(3pt),
-      line(length: 100%, stroke: 0.8pt + black),
-      v(5pt),
-    )
-  }
 
   init-acronyms(acronyms)
 
