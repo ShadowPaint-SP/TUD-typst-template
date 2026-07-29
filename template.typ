@@ -320,6 +320,10 @@
     align: center,
     stroke: none,
   )
+  show table: it => {
+    set par(justify: false)
+    it
+  }
 
   init-acronyms(acronyms)
 
