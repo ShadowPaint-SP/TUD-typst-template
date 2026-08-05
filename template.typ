@@ -294,8 +294,9 @@
   show figure.caption: set text(size: font-size - 2pt, style: "italic")
 
   // Code Styling
-  show raw: set text(font: "JetBrains Mono NL", size: font-size - 4pt)
+  show raw: set text(font: "JetBrains Mono NL", style: "italic")
   show raw.where(block: true): it => {
+    set text(size: font-size - 4pt, style: "normal")
     block(
       fill: rgb("#eee"),
       inset: 6pt,
